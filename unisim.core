@@ -1157,10 +1157,4 @@ targets:
   default: &default
     description     : Default Target
     filesets        :
-      - files_hdl
-    toplevel        : unisim.RAMB16_S9_S18
-    default_tool    : ghdl
-    tools :
-      ghdl :
-#       analyze_options : ["-fexplicit","-Wbinding","-Wno-hide","-Wno-others","-Wno-static","--ieee=standard","--no-vital-checks","-frelaxed"]
-        run_options     : []
+      - "!tool_ise?(files_hdl)"

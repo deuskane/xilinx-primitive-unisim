@@ -112,7 +112,7 @@ use unisim.vpkg.all;
     constant O : std_logic_vector(1 downto 0) := "11";
     constant PCI : std_ulogic := '0';
     constant NORMAL : std_ulogic := '1';
-    constant DEFAULT : std_logic_vector(3 downto 0) := "1001";
+    constant C_DEFAULT : std_logic_vector(3 downto 0) := "1001";
     constant FIXED : std_logic_vector(3 downto 0) := "1000";
     constant VAR : std_logic_vector(3 downto 0) := "1100";
     constant DIFF_PHASE_DETECTOR : std_logic_vector(3 downto 0) := "1111";
@@ -159,7 +159,7 @@ function boolean_to_string(bool: boolean)
     signal DELAY_SRC_BINARY : std_logic_vector(1 downto 0) := IO;
     signal IDELAY2_VALUE_BINARY : std_logic_vector(7 downto 0) := "00000000";
     signal IDELAY_MODE_BINARY : std_ulogic := NORMAL;
-    signal IDELAY_TYPE_BINARY : std_logic_vector(3 downto 0) := DEFAULT;
+    signal IDELAY_TYPE_BINARY : std_logic_vector(3 downto 0) := C_DEFAULT;
     signal IDELAY_VALUE_BINARY : std_logic_vector(7 downto 0) := "00000000";
     signal ODELAY_VALUE_BINARY : std_logic_vector(7 downto 0) := "00000000";
     signal SERDES_MODE_BINARY : std_ulogic := NONE;
@@ -611,7 +611,7 @@ begin
 -------------------------------------------------
     -- case IDELAY_TYPE is
     if   (IDELAY_TYPE_STRING(1 to IDELAY_TYPE_MAX) = DEFAULT_STRING) then
-       IDELAY_TYPE_BINARY <= DEFAULT;
+       IDELAY_TYPE_BINARY <= C_DEFAULT;
     elsif(IDELAY_TYPE_STRING(1 to IDELAY_TYPE_MAX) = DIFF_PHASE_DETECTOR_STRING) then
        IDELAY_TYPE_BINARY <= DIFF_PHASE_DETECTOR;
        rst_to_half_reg <= '1';
@@ -1222,7 +1222,7 @@ begin
            delay_val_pe_1 <= odelay_val_pe_reg;
            delay_val_pe_2 <= odelay_val_pe_reg;
         -- input delays
-        elsif ((IDELAY_TYPE_BINARY = FIXED) or (IDELAY_TYPE_BINARY = DEFAULT)) then
+        elsif ((IDELAY_TYPE_BINARY = FIXED) or (IDELAY_TYPE_BINARY = C_DEFAULT)) then
            if (pci_ce_reg = '1') then -- PCI
               delay_val_pe_1 <= IDELAY_VALUE_BINARY(7 downto 0);
               delay_val_pe_2 <= IDELAY2_VALUE_BINARY(7 downto 0);
@@ -1269,7 +1269,7 @@ begin
            delay_val_ne_1 <= odelay_val_ne_reg;
            delay_val_ne_2 <= odelay_val_ne_reg;
         -- input delays
-        elsif ((IDELAY_TYPE_BINARY = FIXED) or (IDELAY_TYPE_BINARY = DEFAULT)) then
+        elsif ((IDELAY_TYPE_BINARY = FIXED) or (IDELAY_TYPE_BINARY = C_DEFAULT)) then
            if (pci_ce_reg = '1') then -- PCI
               delay_val_ne_1 <= IDELAY_VALUE_BINARY(7 downto 0);
               delay_val_ne_2 <= IDELAY2_VALUE_BINARY(7 downto 0);

@@ -45,8 +45,9 @@ USE STD.TEXTIO.ALL;
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 
-use IEEE.VITAL_Timing.all;
-use IEEE.VITAL_Primitives.all;
+library IEEE_dummy;
+use IEEE_dummy.VITAL_Timing.all;
+use IEEE_dummy.VITAL_Primitives.all;
 
 package VPKG is
   type OtherGenericsType is record    

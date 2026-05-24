@@ -1,6 +1,23 @@
 CAPI=2:
 
-name : xilinx:primitive:unisim:11.1
+#-----------------------------------------------------------------------------
+# Title      : Unisim
+# Project    : Asylum
+#-----------------------------------------------------------------------------
+# File       : unisim.core
+# Author     : mrosiere
+#-----------------------------------------------------------------------------
+# Description: Import of Unisim from Xilinx
+#-----------------------------------------------------------------------------
+# Copyright (c) 2025
+#-----------------------------------------------------------------------------
+# Revisions  :
+# Date        Version  Author   Description
+# 2021/10/27  11.1     mrosiere Initial Import
+# 2026/05/24  11.1.1   mrosiere Use IEEE_dummy pakage for vital
+#-----------------------------------------------------------------------------
+
+name : xilinx:primitive:unisim:11.1.1
 description : Xilinx Primitive
 
 filesets:
@@ -1148,6 +1165,8 @@ filesets:
       - hdl/primitive/IBUFDS_GTHE1.vhd
     file_type : vhdlSource
     logical_name : unisim
+    depend       :
+      - asylum:utils:pkg
 
 targets:
 
